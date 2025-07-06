@@ -13,4 +13,10 @@ public class CalculatorServiceTest {
         int result = service.add(2, 3);
         assertEquals(5, result);
     }
+
+    @Test
+    void testSub(){
+        int result = service.sub(5, 2);
+        assertEquals(3, result);
+    }
 }
