@@ -1,0 +1,42 @@
+name: CD for Calculator Project
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build project
+        run: ./mvnw clean package -DskipTests
+
+      - name: Copy jar to server
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "target/*.jar"
+          target: "~/app"
+
+      - name: Restart app on server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            pkill -f "calculator-ci" || true
+            nohup java -jar ~/app/calculator-ci-*.jar > ~/app/log.txt 2>&1 &
