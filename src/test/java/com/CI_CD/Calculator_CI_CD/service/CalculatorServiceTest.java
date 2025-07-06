@@ -17,6 +17,6 @@ public class CalculatorServiceTest {
     @Test
     void testSub(){
         int result = service.sub(5, 2);
-        assertEquals(12, result);
+        assertEquals(3, result);
     }
 }
