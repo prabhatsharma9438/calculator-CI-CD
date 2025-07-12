@@ -55,8 +55,8 @@ jobs:
             cd ~/calculator-CI-CD/target
             echo "🛑 Stopping existing Spring Boot app..."
             pkill -f "Calculator-CI-CD-0.0.1-SNAPSHOT.jar" || true
-            
-            echo "🚀 Starting $JAR_FILE..."
-            nohup java -jar "$JAR_FILE" > ~/log.txt 2>&1 &
+
+            echo "🚀 Starting Calculator-CI-CD-0.0.1-SNAPSHOT.jar..."
+            nohup java -jar Calculator-CI-CD-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
             sleep 2
             echo "✅ Spring Boot app launched in background."
