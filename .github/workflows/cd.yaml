@@ -43,5 +43,4 @@ jobs:
           script: |
             cd ~/app
             pkill -f "java" || true
-            nohup java -jar *.jar > log.txt 2>&1 & disown
-            sleep 5
+            screen -dmS springboot java -jar *.jar
