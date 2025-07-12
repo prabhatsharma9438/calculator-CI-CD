@@ -32,7 +32,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "target/*.jar"
-          target: "~/app"
+          target: "~/calculator-CI-CD/target"
 
       - name: Restart Spring Boot App on EC2
         uses: appleboy/ssh-action@master
@@ -42,8 +42,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           command_timeout: 5m
           script: |
-            cd ~/app
+            cd ~/calculator-CI-CD/target
             pkill -f "java" || true
-            nohup java -jar target/*.jar > log.txt 2>&1 &
+            nohup java -jar Calculator-CI-CD-0.0.1-SNAPSHOT.jar > ~/log.txt 2>&1 &
+            sleep 2
             echo "✅ Spring Boot app launched in background."
             exit 0
