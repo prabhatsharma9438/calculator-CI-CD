@@ -26,10 +26,7 @@ public class CalculatorController {
         return "sub is : "+calculatorService.sub(a, b);
     }
 
-    @GetMapping("/mul")
-    public String mul(@RequestParam int a, @RequestParam int b) {
-        return "sub is : "+calculatorService.mul(a, b);
-    }
+
 
 
 }
