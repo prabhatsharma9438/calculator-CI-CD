@@ -55,10 +55,6 @@ jobs:
             echo "📁 Navigating to app directory..."
             cd ~/calculator-CI-CD/target
             
-            echo "✅ ready to kill."
-            pkill -f 'Calculator-CI-CD-0.0.1-SNAPSHOT.jar'
-            echo "✅ killed successfully."
-            
             echo "✅ running jar file."
             nohup java -jar target/Calculator-CI-CD-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
 
