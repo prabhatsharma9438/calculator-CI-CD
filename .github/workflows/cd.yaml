@@ -44,5 +44,6 @@ jobs:
           script: |
             cd ~/app
             pkill -f "java" || true
-            nohup java -jar *.jar > log.txt 2>&1 &
+            nohup java -jar target/*.jar > log.txt 2>&1 &
             echo "✅ Spring Boot app launched in background."
+          
