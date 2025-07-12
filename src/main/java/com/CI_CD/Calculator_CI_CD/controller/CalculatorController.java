@@ -17,13 +17,18 @@ public class CalculatorController {
     }
 
     @GetMapping("/add")
-    public int add(@RequestParam int a, @RequestParam int b) {
-        return calculatorService.add(a, b);
+    public String add(@RequestParam int a, @RequestParam int b) {
+        return "sum is : "+calculatorService.add(a, b);
     }
 
     @GetMapping("/sub")
-    public int sub(@RequestParam int a, @RequestParam int b) {
-        return calculatorService.sub(a, b);
+    public String sub(@RequestParam int a, @RequestParam int b) {
+        return "sub is : "+calculatorService.sub(a, b);
+    }
+
+    @GetMapping("/mul")
+    public String mul(@RequestParam int a, @RequestParam int b) {
+        return "sub is : "+calculatorService.mul(a, b);
     }
 
 
