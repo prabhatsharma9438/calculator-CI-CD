@@ -56,11 +56,11 @@ jobs:
             cd ~/calculator-CI-CD
 
             echo "🛑 Stopping existing Spring Boot app..." | tee -a ~/calculator-CI-CD/deployment.log
-            pkill -f "Calculator-CI-CD-0.0.1-SNAPSHOT.jar" \
-              && echo "$(date): Process killed successfully." >> deployment.log \
-              || echo "$(date): No running process found." >> deployment.log
+            pkill -f "Calculator-CI-CD-0.0.1-SNAPSHOT.jar" 2>/dev/null || true
+            echo "$(date): pkill executed" >> deployment.log
 
             echo "🚀 Starting Calculator-CI-CD-0.0.1-SNAPSHOT.jar..." | tee -a deployment.log
             nohup java -jar Calculator-CI-CD-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
             sleep 2
             echo "✅ Spring Boot app launched in background." >> deployment.log
+      
