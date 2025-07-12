@@ -31,6 +31,11 @@ public class CalculatorController {
         return "mul is : "+calculatorService.mul(a, b);
     }
 
+    @GetMapping("/get")
+    public String intro() {
+        return "my name is prabhat sharma i made this calculator api";
+    }
+
 
 
 
