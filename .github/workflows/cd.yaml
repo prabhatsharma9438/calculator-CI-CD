@@ -58,6 +58,6 @@ jobs:
             
 
             echo "🚀 Starting Calculator-CI-CD-0.0.1-SNAPSHOT.jar..." | tee -a deployment.log
-            nohup java -jar Calculator-CI-CD-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+            nohup java -jar ~/calculator-CI-CD/target/Calculator-CI-CD-0.0.1-SNAPSHOT.jar > ~/calculator-CI-CD/target/app.log 2>&1 &
             sleep 2
             echo "✅ Spring Boot app launched in background." >> deployment.log
