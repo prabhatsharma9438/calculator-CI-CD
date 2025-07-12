@@ -36,6 +36,11 @@ public class CalculatorController {
         return "my name is prabhat sharma i made this calculator api lets see";
     }
 
+    @GetMapping("/rahul")
+    public String rahul() {
+        return "my name is rahul pase i made this calculator api lets see";
+    }
+
 
 
 
