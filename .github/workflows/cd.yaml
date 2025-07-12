@@ -32,16 +32,17 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "🧹 Removing old JAR files..."
-            rm -f ~/calculator-CI-CD/target/*.jar || true
+            echo "🧹 Removing old JAR files..." | tee -a ~/calculator-CI-CD/deployment.log
+            rm -f ~/calculator-CI-CD/*.jar || true
+
       - name: Copy JAR to EC2
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "target/*.jar"
-          target: "~/calculator-CI-CD/target"
+          source: "target/Calculator-CI-CD-0.0.1-SNAPSHOT.jar"
+          target: "~/calculator-CI-CD"
 
       - name: Restart Spring Boot App on EC2
         uses: appleboy/ssh-action@master
@@ -51,15 +52,15 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           command_timeout: 5m
           script: |
-            echo "📁 Navigating to app directory..."
-            cd ~/calculator-CI-CD/target
-            
+            echo "📁 Navigating to app directory..." | tee -a ~/calculator-CI-CD/deployment.log
+            cd ~/calculator-CI-CD
+
             echo "🛑 Stopping existing Spring Boot app..." | tee -a ~/calculator-CI-CD/deployment.log
             pkill -f "Calculator-CI-CD-0.0.1-SNAPSHOT.jar" \
-            && echo "$(date): Process killed successfully." >> ../deployment.log \
-            || echo "$(date): No running process found." >> ../deployment.log
+              && echo "$(date): Process killed successfully." >> deployment.log \
+              || echo "$(date): No running process found." >> deployment.log
 
-            echo "🚀 Starting Calculator-CI-CD-0.0.1-SNAPSHOT.jar..."
-            nohup java -jar Calculator-CI-CD-0.0.1-SNAPSHOT.jar > log.txt 2>&1 &
+            echo "🚀 Starting Calculator-CI-CD-0.0.1-SNAPSHOT.jar..." | tee -a deployment.log
+            nohup java -jar Calculator-CI-CD-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
             sleep 2
-            echo "✅ Spring Boot app launched in background."
+            echo "✅ Spring Boot app launched in background." >> deployment.log
