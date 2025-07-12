@@ -23,6 +23,6 @@ public class CalculatorServiceTest {
     @Test
     void testMul(){
         int result = service.mul(5, 2);
-        assertEquals(12, result);//result will be 10 but we put expected as 12 so this testcase gonna be fail
+        assertEquals(10, result);
     }
 }
