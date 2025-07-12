@@ -40,10 +40,9 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
+          command_timeout: 5m
           script: |
-            bash -c '
-              cd ~/app
-              pkill -f "java" || true
-              nohup java -jar *.jar > log.txt 2>&1 & disown
-              echo "Spring Boot app restarted successfully"
-            '
+            cd ~/app
+            pkill -f "java" || true
+            nohup java -jar *.jar > log.txt 2>&1 &
+            echo "✅ Spring Boot app launched in background."
