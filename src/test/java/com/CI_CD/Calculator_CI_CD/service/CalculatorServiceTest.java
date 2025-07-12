@@ -19,4 +19,10 @@ public class CalculatorServiceTest {
         int result = service.sub(5, 2);
         assertEquals(3, result);
     }
+
+    @Test
+    void testMul(){
+        int result = service.mul(5, 2);
+        assertEquals(12, result);//result will be 10 but we put expected as 12 so this testcase gonna be fail
+    }
 }
