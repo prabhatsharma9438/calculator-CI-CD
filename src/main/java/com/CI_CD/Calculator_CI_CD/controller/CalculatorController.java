@@ -38,7 +38,7 @@ public class CalculatorController {
 
     @GetMapping("/rahul")
     public String rahul() {
-        return "kaam ho gya he ab to";
+        return "hiii my name is rahul";
     }
 
 
