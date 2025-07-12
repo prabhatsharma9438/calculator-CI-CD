@@ -33,7 +33,7 @@ public class CalculatorController {
 
     @GetMapping("/get")
     public String intro() {
-        return "My name is Prabhat Sharma, and I developed this Calculator API.";
+        return "My name is prabhat i developed this api which is free to use.";
     }
 
 
