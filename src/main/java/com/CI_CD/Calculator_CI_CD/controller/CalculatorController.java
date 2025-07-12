@@ -33,12 +33,7 @@ public class CalculatorController {
 
     @GetMapping("/get")
     public String intro() {
-        return "my name is prabhat sharma i made this calculator api lets see";
-    }
-
-    @GetMapping("/rahul")
-    public String rahul() {
-        return "hiii my name is rahul";
+        return "My name is Prabhat Sharma, and I developed this Calculator API.";
     }
 
 
