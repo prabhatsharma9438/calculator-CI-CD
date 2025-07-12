@@ -19,4 +19,12 @@ public class CalculatorServiceTest {
         int result = service.sub(5, 2);
         assertEquals(3, result);
     }
+
+    @Test
+    void testMul(){
+        int result = service.mul(5, 2);
+        assertEquals(10, result);// this gonna be pass
+    }
+
+
 }
