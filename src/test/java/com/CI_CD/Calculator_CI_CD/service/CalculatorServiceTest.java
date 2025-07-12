@@ -20,7 +20,11 @@ public class CalculatorServiceTest {
         assertEquals(3, result);
     }
 
-
+    @Test
+    void testMul(){
+        int result = service.mul(5, 2);
+        assertEquals(12, result);// this gonna be fail
+    }
 
 
 }
